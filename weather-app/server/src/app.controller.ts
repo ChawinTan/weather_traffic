@@ -9,4 +9,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('traffic')
+  getTrafficImageData() {
+    return this.appService.getTrafficImages('2022-11-11', null);
+  }
 }
