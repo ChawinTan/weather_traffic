@@ -42,7 +42,7 @@ export class AppService {
 
     const trafficData = this.httpService.get(url).pipe(
       map((response) => {
-        const imgArray = response.data.items[0].cameras.slice(2);
+        const imgArray = response.data.items[0].cameras.slice(0, 10);
         for (let i = 0; i < imgArray.length; i++) {
           const img = imgArray[i];
           const parsedImgObj = {

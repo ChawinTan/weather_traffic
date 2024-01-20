@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\weather-app",
+    "\\weather-app\\server",
+    "\\weather-app\\server\\src",
+    "\\weather-app\\src",
+    "\\weather-app\\src\\datetimepickers"
+  ],
+  "SelectedNode": "\\weather-app\\server\\src\\app.service.ts",
+  "PreviewInSolutionExplorer": false
+}
