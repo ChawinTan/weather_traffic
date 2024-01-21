@@ -1,15 +1,22 @@
 .App {
     padding: 1rem;
 }
-.picker-wrapper {
+.picker-wrapper, .search-button, .location-list {
     display: flex;
     justify-content: center;
+}
+
+.search-button {
+    margin-top: 1rem;
 }
 
 @media (max-width: 767px) {
    .picker-wrapper {
        flex-direction: column;
        align-items: center;
+   }
+   .date-picker {
+    margin-bottom: 1rem;
    }
 }
        
