@@ -37,7 +37,7 @@ export class AppService {
   }
 
   async getTrafficImages(date: string, time: string) {
-    const url = `${govtechTrafficBaseUrl}?date-time=${date}${time}`;
+    const url = `${govtechTrafficBaseUrl}?date-time=${date}T${time}+08:00`;
     const parsedImgArray = [];
 
     const trafficData = this.httpService.get(url).pipe(

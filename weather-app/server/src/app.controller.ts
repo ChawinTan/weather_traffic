@@ -1,5 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+
+interface QueryProps {
+  date: string;
+  time: string;
+}
+
+interface LocationProps {
+  lat: string;
+  lon: string
+}
 
 @Controller()
 export class AppController {
@@ -10,13 +20,13 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('traffic')
-  getTrafficImageData() {
-    return this.appService.getTrafficImages('2022-11-11', null);
+  @Post('traffic')
+  getTrafficImageData(@Query() query: QueryProps) {
+    return this.appService.getTrafficImages(query.date, query.time);
   }
 
-  @Get('location')
-  getAddress() {
-    return this.appService.parseGeoLocation('1.323957439', '103.8728576')
+  @Post('location')
+  getAddress(@Query() query: LocationProps) {
+    return this.appService.parseGeoLocation(query.lat, query.lon)
   }
 }
