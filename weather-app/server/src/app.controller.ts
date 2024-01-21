@@ -11,6 +11,8 @@ interface LocationProps {
   lon: string
 }
 
+interface WeatherProps extends LocationProps {}
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -28,5 +30,10 @@ export class AppController {
   @Post('location')
   getAddress(@Query() query: LocationProps) {
     return this.appService.parseGeoLocation(query.lat, query.lon)
+  }
+
+  @Post('weather')
+  getWeather(@Query() query: WeatherProps) {
+    return this.appService.getWeather(query.lat, query.lon)
   }
 }

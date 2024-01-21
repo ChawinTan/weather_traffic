@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import './App.css';
 
-interface TrafficDataType {
+export interface TrafficDataType {
   lat: string;
   lon: string;
   imgUrl: string;

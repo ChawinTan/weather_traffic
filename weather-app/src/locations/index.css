@@ -1,4 +1,9 @@
-.image {
+.image-weather {
     display: flex;
     justify-content: center;
+}
+
+.weather {
+    margin-left: 1rem;
+    text-align: center;
 }
