@@ -60,7 +60,9 @@ function App() {
   return (
       <div className="App">
           <div className="picker-wrapper">
-            <Date value={date} setDate={setDate}/>
+            <div className='date-picker'>
+              <Date value={date} setDate={setDate}/>
+            </div>
             <Time value={time} setTime={setTime} />
         </div>
         <div className='search-button'>
