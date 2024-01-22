@@ -66,7 +66,7 @@ function App() {
             <Time value={time} setTime={setTime} />
         </div>
         <div className='search-button'>
-          <Button variant="contained" onClick={() => onClickGetTrafficImg(date, time, setTraffic, [], setLocation, setLoading)}>Get Traffic Images</Button>
+          <Button disabled={date?.length === 0 && time?.length === 0} variant="contained" onClick={() => onClickGetTrafficImg(date, time, setTraffic, [], setLocation, setLoading)}>Get Traffic Images</Button>
         </div>
         <div className='location-list'>
           {loading && <CircularProgress />}

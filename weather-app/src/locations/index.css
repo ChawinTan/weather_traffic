@@ -7,3 +7,11 @@
     margin-left: 1rem;
     text-align: center;
 }
+
+@media (max-width: 767px) {
+    .image-weather {
+        flex-direction: column;
+        align-items: center;
+    }
+ }
+       
