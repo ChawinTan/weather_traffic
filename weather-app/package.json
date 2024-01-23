@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.39",
     "jest-fetch-mock": "^3.0.3"
   }
 }
