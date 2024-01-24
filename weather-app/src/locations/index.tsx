@@ -39,6 +39,9 @@ const getWeather = (
     method: 'POST',
   }).then((res) => res.json())
   .then(json => setWeather(json))
+  .catch(err => {
+    // display a popup with err message if I have the time
+  })
 }
 
 function Locations(props: LocationProps) {

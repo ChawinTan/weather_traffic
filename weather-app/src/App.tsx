@@ -47,6 +47,8 @@ const onClickGetTrafficImg = (
   .then((json: any) => {
     setTraffic(json)
     return getLocations(json, locationList, setLocation, setLoading)
+  }).catch(err => {
+    // display a popup with err message if I have the time
   })
 }
 
