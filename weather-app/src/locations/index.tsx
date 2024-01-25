@@ -34,13 +34,17 @@ const handleSetImage = (
 const getWeather = (
   lat: string, 
   lon: string, 
-  setWeather: React.Dispatch<React.SetStateAction<WeatherProps | null>>) => {
+  setWeather: React.Dispatch<React.SetStateAction<WeatherProps | null>>,
+  setError: React.Dispatch<React.SetStateAction<boolean>>) => {
   fetch(`http://localhost:3001/weather?lat=${lat}&lon=${lon}`,{
     method: 'POST',
   }).then((res) => res.json())
-  .then(json => setWeather(json))
+  .then(json => {
+    setError(false)
+    setWeather(json)
+  })
   .catch(err => {
-    // display a popup with err message if I have the time
+    setError(true)
   })
 }
 
@@ -48,6 +52,7 @@ function Locations(props: LocationProps) {
   const  {location, traffic} = props;
   const [selectedImg, setSelectedImg] = React.useState<SelectedImg | null>(null);
   const [weather, setWeather] = React.useState<WeatherProps | null>(null);
+  const [error, setError] = React.useState<boolean>(false);
 
   return (
     <div>
@@ -58,7 +63,7 @@ function Locations(props: LocationProps) {
               <li key={index}>
                 <Button variant="text" onClick={() => {
                   handleSetImage(index, traffic[index].imgUrl, setSelectedImg);
-                  getWeather(traffic[index].lat, traffic[index].lon, setWeather)
+                  getWeather(traffic[index].lat, traffic[index].lon, setWeather, setError)
                 }}>{val}</Button>
               </li>
             )
@@ -77,6 +82,7 @@ function Locations(props: LocationProps) {
             <div>Weather - {weather?.forecast}</div>
           </div>
         }
+        {error && <div>Something went wrong</div>}
       </div>
     </div>
   );

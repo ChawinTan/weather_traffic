@@ -36,7 +36,8 @@ const onClickGetTrafficImg = (
     setTraffic: React.Dispatch<React.SetStateAction<TrafficDataType[]>>, 
     locationList: Array<string>, 
     setLocation: React.Dispatch<React.SetStateAction<string[]>>,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setError: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
   setLoading(true);
   setLocation([]);
@@ -46,9 +47,10 @@ const onClickGetTrafficImg = (
   .then(res => res.json())
   .then((json: any) => {
     setTraffic(json)
+    setError(false)
     return getLocations(json, locationList, setLocation, setLoading)
   }).catch(err => {
-    // display a popup with err message if I have the time
+    setError(true)
   })
 }
 
@@ -57,7 +59,8 @@ function App() {
   const [time, setTime] = React.useState<string | null>('')
   const [location, setLocation] = React.useState<Array<string>>([]);
   const [traffic, setTraffic] = React.useState<Array<TrafficDataType>>([]);
-  const [loading, setLoading] = React.useState<boolean>(false)
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<boolean>(false);
 
   return (
       <div className="App">
@@ -68,13 +71,14 @@ function App() {
             <Time value={time} setTime={setTime} />
         </div>
         <div className='search-button'>
-          <Button disabled={date?.length === 0 && time?.length === 0} variant="contained" onClick={() => onClickGetTrafficImg(date, time, setTraffic, [], setLocation, setLoading)}>Get Traffic Images</Button>
+          <Button disabled={date?.length === 0 && time?.length === 0} variant="contained" onClick={() => onClickGetTrafficImg(date, time, setTraffic, [], setLocation, setLoading, setError)}>Get Traffic Images</Button>
         </div>
         <div className='location-list'>
           {loading && <CircularProgress />}
           {
             location.length === 0 ? <div>Search traffic locations</div> : <Locations location={location}  traffic={traffic} />
           }
+          {error && <div>Something went wrong</div>}
         </div>
     </div>
   );
